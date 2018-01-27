@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import './style.css'
 
-ReactDOM.render(
-    <h1>Welcome to my website</h1>,
-    document.getElementById('app')
-);
+setInterval(function () {
+    ReactDOM.render(
+        <h2>Current time: {new Date().toLocaleTimeString()}</h2>,
+        document.getElementById('app')
+    );
+}, 1000);
+
