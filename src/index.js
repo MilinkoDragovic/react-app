@@ -2,27 +2,41 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './style.css'
 
+class Clock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            date: new Date()
+        }
+    }
 
-function Cartoon(props) {
-        return <h1>Zdravo, {props.name} {props.show}</h1>
+    componentDidMount() {
+        this.timer = setInterval(() => this.start(), 1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer)
+    }
+
+    start() {
+        this.setState({
+            date: new Date()
+        });
+    }
+
+    render() {
+        return <h1>Time is: {this.state.date.toLocaleTimeString()}</h1>
+    }
 }
-
-function Show (){
-    return <div>
-        <Cartoon name="Vladjimir" show="Bleso"/>
-        <Cartoon name="Mili" show="Kralj"/>
-    </div>
-}
-
-// class Cartoon extends React.Component {
-//     render(){
-//         return <h1>Hello {this.props.name}</h1>
-//     }
-// }
 
 ReactDOM.render(
-    <Show />,
+    <Clock/>,
     document.getElementById('app')
 );
+
+
+
+
+
 
 
